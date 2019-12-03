@@ -3,13 +3,13 @@ import {
     useRef,
     useState
 } from 'react';
-import './index.css';
 import React from "react";
 interface IProps {
     height:string,
     width:string,
     style?:object
 }
+import './index.css';
 
 const ScrollBar: React.FC<IProps> = ({height, width, style, children}) => {
     let clickThumbAxis = 0, cursorDown = false
@@ -86,6 +86,7 @@ const ScrollBar: React.FC<IProps> = ({height, width, style, children}) => {
         const thumbPositionPercentage = (offset - thumbClickPosition) * 100 / bar.current.offsetHeight;
         //计算出滚动条应该在滚动框中所处的位置，scrollTop
         scrollBar.current.scrollTop = thumbPositionPercentage * scrollBar.current.scrollHeight / 100;
+		bar.current.style.opacity = "1"
     }
 
     function mouseUpDocumentHandler(e: MouseEvent) {
@@ -93,6 +94,7 @@ const ScrollBar: React.FC<IProps> = ({height, width, style, children}) => {
         clickThumbAxis = 0;
         document.removeEventListener("mousemove", mouseMoveDocumentHandler);
         document.onselectstart = null;
+		bar.current.style.opacity = "0"
     }
     useEffect(() => {
         updateThumb()

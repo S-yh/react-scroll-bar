@@ -22,10 +22,12 @@ import ScrollBar from '@s-yh/react-scroll-bar'
 ```
 ## Release History
 
-* 1.0.0
-    * Work in progress
+* 1.0.4
+    * Solve the bug that the thump is disappear when mousemove
 * 1.0.2
     * Support the typescript
+* 1.0.0
+    * Work in progress
 
 ## Authors
 
