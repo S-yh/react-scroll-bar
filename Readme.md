@@ -1,6 +1,6 @@
 # @s-yh/react-scroll-bar
 
-> A beautiful scrollbar for react. It is a container, and you can insert anything into it. Just add `height`, `width`.
+> A scrollbar for react. It is a container, and you can insert anything into it. Just add `height`, `width`.
 
 
 ## Getting Started
