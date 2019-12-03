@@ -3,11 +3,15 @@ import {
     useRef,
     useState
 } from 'react';
-
 import './index.css';
-import React from "react"
+import React from "react";
+interface IProps {
+    height:string,
+    width:string,
+    style?:object
+}
 
-const ScrollBar = ({height, width, style, children}) => {
+const ScrollBar: React.FC<IProps> = ({height, width, style, children}) => {
     let clickThumbAxis = 0, cursorDown = false
     const contentRef = useRef(null)
     const scrollBar = useRef(null)
@@ -18,7 +22,7 @@ const ScrollBar = ({height, width, style, children}) => {
     const [moveY, setMoveY] = useState(0)
     //获取滚动条宽度
     function getScrollWidth() {
-        const outer = document.createElement("div");
+        const outer: HTMLElement = document.createElement("div");
         outer.style.width = '100px';
         outer.style.visibility = "hidden";
         outer.style.position = "absolute";
@@ -45,7 +49,7 @@ const ScrollBar = ({height, width, style, children}) => {
         setMoveY(scrollBar.current.scrollTop * 100 / scrollBar.current.clientHeight)
     }
 
-    function handleClick(e) {
+    function handleClick(e: any) {
         //获得点击位置与滚动框顶部之间的距离
         const offset = Math.abs(e.target.getBoundingClientRect().top - e.clientY)
         //让点击位置处于滚动条的中间
@@ -56,12 +60,12 @@ const ScrollBar = ({height, width, style, children}) => {
         scrollBar.current.scrollTop = (thumbPositionPercentage * scrollBar.current.scrollHeight / 100);
     }
 
-    function handleMouseDown(e) {
+    function handleMouseDown(e: any) {
         startDrag(e);
         clickThumbAxis = e.currentTarget.offsetHeight - (e.clientY - e.currentTarget.getBoundingClientRect().top);
     }
 
-    function startDrag(e) {
+    function startDrag(e: React.MouseEvent<HTMLElement>) {
         e.nativeEvent.stopImmediatePropagation();
         e.stopPropagation();
         cursorDown = true;
@@ -70,7 +74,7 @@ const ScrollBar = ({height, width, style, children}) => {
         document.onselectstart = null;
     }
 
-    function mouseMoveDocumentHandler(e) {
+    function mouseMoveDocumentHandler(e: MouseEvent) {
         if (cursorDown === false) return;
         const prevPage = clickThumbAxis;
         if (!prevPage) return;
@@ -84,7 +88,7 @@ const ScrollBar = ({height, width, style, children}) => {
         scrollBar.current.scrollTop = thumbPositionPercentage * scrollBar.current.scrollHeight / 100;
     }
 
-    function mouseUpDocumentHandler(e) {
+    function mouseUpDocumentHandler(e: MouseEvent) {
         cursorDown = false;
         clickThumbAxis = 0;
         document.removeEventListener("mousemove", mouseMoveDocumentHandler);

@@ -24,6 +24,8 @@ import ScrollBar from '@s-yh/react-scroll-bar'
 
 * 1.0.0
     * Work in progress
+* 1.0.2
+    * Support the typescript
 
 ## Authors
 
